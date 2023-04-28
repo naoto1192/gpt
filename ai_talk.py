@@ -22,7 +22,7 @@ OPENAI_CHARACTER_PROFILE = '''
 '''
 
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = os.environ["OPENAI_API_KEY"]
 line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
 line_parser = WebhookParser(os.environ["LINE_CHANNEL_SECRET"])
 app = FastAPI()
