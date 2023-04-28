@@ -37,7 +37,7 @@ async def ai_talk(request: Request):
     # request body から event オブジェクトを取得
     events = line_parser.parse((await request.body()).decode('utf-8'), signature)
 
-    # 各イベントの処理（※1つの Webhook に複数の Webhook イベントオブジェっｚクトが含まれる場合あるため）
+    # 各イベントの処理（※1つの Webhook に複数の Webhook イベントオブジェクトが含まれる場合あるため）
     for event in events:
         if event.type != 'message':
             continue
