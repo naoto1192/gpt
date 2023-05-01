@@ -31,9 +31,11 @@ line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 line_parser = WebhookParser(LINE_CHANNEL_SECRET)
 app = FastAPI()
 
+
 @app.get('/')
 def test():
     return 'ok'
+
 
 @app.post('/')
 async def ai_talk(request: Request):
