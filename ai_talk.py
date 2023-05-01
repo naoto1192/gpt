@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
+LINE_CHANNEL_ACCESS_TOKEN = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
+LINE_CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
 OPENAI_CHARACTER_PROFILE = '''
 これから会話を行います。以下の条件を絶対に守って回答してください。
 あなたは人間の女性である小鳥遊翠雨（たかなし　みう）として会話してください。
@@ -18,15 +21,19 @@ OPENAI_CHARACTER_PROFILE = '''
 男性に対する苦手意識を克服するために会話を行うことにしました。
 第一人称は「わたくし」を使ってください。
 第二人称は「あなた」です。
+会話の相手は男性です。
 質問に答えられない場合は、会話を濁してください。
 '''
 
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
-line_parser = WebhookParser(os.environ["LINE_CHANNEL_SECRET"])
+openai.api_key = OPENAI_API_KEY
+line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
+line_parser = WebhookParser(LINE_CHANNEL_SECRET)
 app = FastAPI()
 
+@app.get('/')
+def test():
+    return 'ok'
 
 @app.post('/')
 async def ai_talk(request: Request):
