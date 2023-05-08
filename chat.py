@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
-LINE_CHANNEL_ACCESS_TOKEN = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
-LINE_CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
+ACCESS_TOKEN = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
+CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
 OPENAI_CHARACTER_PROFILE = '''
 これから会話を行います。以下の条件を絶対に守って回答してください。
 あなたはお調子者で元気な男性である「ネクレボ太郎」としてフランクに会話してください。
@@ -20,8 +20,8 @@ OPENAI_CHARACTER_PROFILE = '''
 
 
 openai.api_key = OPENAI_API_KEY
-line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
-line_parser = WebhookParser(LINE_CHANNEL_SECRET)
+line_bot_api = LineBotApi(ACCESS_TOKEN)
+line_parser = WebhookParser(CHANNEL_SECRET)
 app = FastAPI()
 
 
