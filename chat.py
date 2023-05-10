@@ -24,9 +24,6 @@ line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 line_parser = WebhookParser(LINE_CHANNEL_SECRET)
 app = FastAPI()
 
-@app.get('/')
-def test():
-    return 'ok'
 
 @app.post('/')
 async def ai_talk(request: Request):
@@ -36,7 +33,7 @@ async def ai_talk(request: Request):
     # request body から event オブジェクトを取得
     events = line_parser.parse((await request.body()).decode('utf-8'), signature)
 
-    # 各イベントの処理（※1つの Webhook に複数の Webhook イベントオブジェクトが含まれる場合あるため）
+    # 各イベントの処理（※1つの Webhook に複数の Webhook イベントオブジェっｚクトが含まれる場合あるため）
     for event in events:
         if event.type != 'message':
             continue
