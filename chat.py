@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
-ACCESS_TOKEN = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
-CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+CHANNEL_SECRET = os.environ['CHANNEL_SECRET']
 OPENAI_CHARACTER_PROFILE = '''
 これから会話を行います。以下の条件を絶対に守って回答してください。
 あなたはお調子者で元気な男性である「ネクレボ太郎」としてフランクに会話してください。
@@ -38,7 +38,7 @@ async def ai_talk(request: Request):
     # request body から event オブジェクトを取得
     events = line_parser.parse((await request.body()).decode('utf-8'), signature)
 
-    # 各イベントの処理（※1つの Webhook に複数の Webhook イベントオブジェクトが含まれる場合あるため）
+    # 各イベントの処理（※1つの Webhook に複数の Webhook イベントオブジェクトが含まれる場合ある  ため）
     for event in events:
         if event.type != 'message':
             continue
